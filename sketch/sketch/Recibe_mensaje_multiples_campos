@@ -1,0 +1,62 @@
+/*
+    espera un mensaje con el fomato 12,112,143
+    Requiere el caracter de salto de linea para indicar el fin del mensaje  
+    Para probarlo se requiere del Monitor de puerto Serie debidamente configurado
+*/
+
+const int NUMBER_OF_FIELDS =3;
+int field_index = 0;
+int values[NUMBER_OF_FIELDS];
+
+void setup()
+{
+    Serial.begin(9600);
+}
+
+
+void loop()
+{
+    if(Serial.available())
+    {
+        char ch =Serial.read();
+        if(ch >= '0' && ch <= '9')
+        {
+            if(field_index < NUMBER_OF_FIELDS)
+            {
+                values[field_index] = values[field_index] *10 + (ch - '0');
+            }
+        }
+        else
+        {
+            if(ch == ',')
+            {
+                ++field_index;
+            }
+            else
+            {
+                for(int i=0; i<min(NUMBER_OF_FIELDS,field_index+1);++i)
+                {
+                    Serial.println(values[i]);
+                    values[i]=0;
+                }   
+                field_index=0;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

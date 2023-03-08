@@ -1,0 +1,16 @@
+// C++ code
+// sketch Ejemplo_SerialEvent
+// Hacer parpadear el LED a una velocidad proporcional al valor del digito recibido por el puerto serie
+// Muestra como usar el metodo SerialEvent para procesar entradas de puerto serie
+//
+
+const int ledPin=13;
+int blinkrate = 0; 
+
+void serialEvent()
+{
+    while(Serial.available)
+    {
+        char
+    }
+}
