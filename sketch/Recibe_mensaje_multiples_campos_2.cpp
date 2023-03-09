@@ -58,7 +58,7 @@ void loop()
             switch(ch)
             {
             case ',':
-                if(leyo_numero && (leyendo_mensaje || H_inmediatamente_anterior)  && field_index < 4 )
+                if(leyendo_mensaje  && (leyo_numero|| H_inmediatamente_anterior)  && field_index < 4 )
                 {
                     ++field_index;
                     H_inmediatamente_anterior = false;
@@ -96,15 +96,8 @@ void loop()
                 break;
             }
         }
+    }
 }
-
-
-
-
-
-
-
-
 
 
 
