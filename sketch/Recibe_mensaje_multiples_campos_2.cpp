@@ -16,6 +16,7 @@ bool H_inmediatamente_anterior = false;
 void setup()
 {
     Serial.begin(9600);
+    Devolver_estado_inicial();
 
 }
 
@@ -24,8 +25,8 @@ void Devolver_estado_inicial()
     leyendo_mensaje = false;
     leyo_numero = false;
     H_inmediatamente_anterior = false;
-    field_index = 0;
-    for(int i=0 ; i<field_index ; ++i)
+    field_index = -1;
+    for(int i=0 ; i<NUMBER_OF_FIELDS ; ++i)
         values[i]=0;
 
 }
@@ -44,14 +45,17 @@ void loop()
         {
             //Leyendo numero
             if (leyendo_mensaje && field_index < 4)
+            {
                 leyo_numero = true;
+                H_inmediatamente_anterior = false;
                 if(field_index < NUMBER_OF_FIELDS)
                 {
-                        values[field_index] = values[field_index] *10 + (ch - '0');
+                        values[field_index] = values[field_index]*10 + (ch - '0');
                 }
+            }
             else 
                 Procesar_basura();
-            H_inmediatamente_anterior = false;
+            
         }
         else
         {
@@ -62,6 +66,8 @@ void loop()
                 {
                     ++field_index;
                     H_inmediatamente_anterior = false;
+                    leyo_numero = false;
+                    
                 }
                 else
                     Procesar_basura();
@@ -82,9 +88,9 @@ void loop()
             case 'F':
                 if(leyendo_mensaje && field_index == 4 && !leyo_numero)
                 {
-                    for(int i=0; i<min(NUMBER_OF_FIELDS,field_index+1);++i)
+                    for(int i=0; i<(NUMBER_OF_FIELDS);++i)
                         Serial.println(values[i]);
-    
+
                     Devolver_estado_inicial();
                 }
                 else
