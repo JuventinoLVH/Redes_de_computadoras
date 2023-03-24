@@ -1,0 +1,28 @@
+/*
+    Sketch Envia_datos_binarios
+
+*/
+int intValue;
+
+void setup()
+{
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    Serial.print("H");
+
+    intValue = random(599);
+    Serial.write(lowByte(intValue));
+    Serial.write(highByte(intValue));
+
+    intValue = random(599);
+    Serial.write(lowByte(intValue));
+    Serial.write(highByte(intValue));
+
+    delay(1000);
+}
+
+
+
