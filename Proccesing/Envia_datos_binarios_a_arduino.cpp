@@ -4,15 +4,15 @@
 */
 
 import processing.serial.*;
+const int indice_puerto = 0;
 
 Serial myPort;
 public static final char HEADER = 'H';
 public static final char MOUSE_TAG = 'M';
-
 void setup()
 {
     seize(512,512);
-    String portName = Serial.list()[0];
+    String portName = Serial.list()[indice_puerto];
     myPort = new Serial(this,portName,96000);    
 }
 
