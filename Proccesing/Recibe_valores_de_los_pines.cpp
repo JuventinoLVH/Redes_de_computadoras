@@ -44,14 +44,14 @@ void draw()
                 bit = bit*2;
             }
             println();
-        }
 
-        for(int i=0;i<6;++i)
-        {
-            val = readArduinoInt();
-            println("puerto analogico " +i+ " = " + val);           
+            for(int i=0;i<6;++i)
+            {
+                val = readArduinoInt();
+                println("puerto analogico " +i+ " = " + val);           
+            }
+            println("...");
         }
-        println("...");
     }
 }
 
