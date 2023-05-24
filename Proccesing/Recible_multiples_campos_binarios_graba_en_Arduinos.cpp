@@ -11,11 +11,11 @@
 
 import processing.serial.*;
 import java.text.*;
-import kava.util.*;
+import java.util.*;
 
 PrintWriter output;
-DateFormat fnameFormat = new SimpleDateFormate("yyMMdd_HHmm");
-DateFormat timeFormate = new SimpleDateFormate("hh:mm:ss");
+DateFormat fnameFormat = new SimpleDateFormat("yyMMdd_HHmm");
+DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 String fileName;
 Serial myPort;
 short portindex = 0;
@@ -46,7 +46,7 @@ void draw()
             String timeString = timeFormat.format(new Date());
             
             println("Recibi mensaje en el tiempo "+timeString);
-            output.println(timiString);
+            output.println(timeString);
 
             val = readArduinoInt();
             for(int pin=2, bit =1 ; pin <= 13 ; ++pin)
